@@ -7,7 +7,6 @@ use App\Models\Barang;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 
-
 class HomeController extends Controller
 {
     public function storeBarang(Request $request)
@@ -17,6 +16,7 @@ class HomeController extends Controller
             'harga' => 'required|integer',
         ]);
         try {
+            //foreign key hanya bisa diisi oleh user dengan tipe seller
             $user = User::where('tipe', 's')->firstOrFail();
             $barang = new Barang;
             $barang->nama_barang = $data['nama_barang'];
