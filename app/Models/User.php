@@ -43,11 +43,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Barang::class);
     }
-    public function createBarang($nama_barang)
-    {
-        return $this->barang()->create([
-            'nama_barang' => $nama_barang,
-            'harga' => $harga,
-        ]);
-    }
 }

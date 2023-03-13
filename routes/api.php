@@ -28,6 +28,7 @@ Route::prefix('buyer')->controller(BuyerHome::class)->group(function () {
 // Seller / Merchant
 Route::prefix('seller')->controller(SellerHome::class)->group(function () {
     Route::get('{user}', 'home');
+    Route::get('get-seller/{id}', 'home');
 });
 
 
@@ -67,4 +68,6 @@ Route::prefix('admin')->controller(AdminHome::class)->group(function () {
 //barang 
 Route::prefix('barang')->controller(BarangHome::class)->group(function () {
     Route::post('add-barang', 'StoreBarang');
+    Route::post('delete-barang/{barang}', 'DeleteBarang');
+    Route::get('get-barang/{id}', 'GetBarang');
 });

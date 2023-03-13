@@ -39,5 +39,37 @@ class HomeController extends Controller
             ], 500);
         }
     }
+    public function GetBarang($user_id){
+        try {
+            $user = User::with('barang')->find($user_id);
+            if (!$user) {
+                return response()->json([
+                    'message' => 'User tidak ditemukan'
+                ], 404);
+            }
+            return response()->json([
+                'user' => $user,
+                'barang' => $user->barang
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Gagal ambil barang',
+                'error' => $th->getMessage()
+            ], 500);
+        }
+    }
+    public function DeleteBarang(Barang $barang){
+        try {
+            $barang->delete();
+            return response()->json([
+                'message' => 'Berhasil Hapus barang'
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Gagal Hapus barang',
+                'error' => $th->getMessage()
+            ], 500);
+        }
+    }
     
 }
