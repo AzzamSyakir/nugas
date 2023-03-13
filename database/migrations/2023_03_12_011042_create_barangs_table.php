@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('barang', function (Blueprint $table) {
+        Schema::create('barangs', function (Blueprint $table) {
             $table->id();
-            $table->string('nama barang');
+            $table->foreignId('user_id')->constrained()->cascadeOnUpdate();
+            $table->string('nama_barang');
+            $table->integer('harga');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Buyer\HomeController as BuyerHome;
 use App\Http\Controllers\Seller\HomeController as SellerHome;
 use App\Http\Controllers\Cahsier\HomeController as CashierHome;
 use App\Http\Controllers\Admin\HomeController as AdminHome;
+use App\Http\Controllers\Barang\HomeController as BarangHome;
 use Illuminate\Support\Facades\Route;
 
 
@@ -12,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// Auth
+// Auth & login
 Route::post('authenticate', [AuthController::class, 'authenticate']);
+Route::post('login', [AuthController::class, 'LoginUser']);
 
 
 // Buyer
@@ -60,4 +62,9 @@ Route::prefix('admin')->controller(AdminHome::class)->group(function () {
     // Withdraw
     Route::get('list-withdraw', 'listWithdraw');
     Route::post('add-withdraw', 'storeWithdraw');
+});
+
+//barang 
+Route::prefix('barang')->controller(BarangHome::class)->group(function () {
+    Route::post('add-barang', 'StoreBarang');
 });

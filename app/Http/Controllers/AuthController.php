@@ -18,4 +18,33 @@ class AuthController extends Controller
             'message' => 'No HP tidak ditemukan',
         ], 401);
     }
+    public function LoginUser(Request $request)
+   
+    {
+        $request->validate([
+            'no_hp' => 'required|string|',
+        ]);
+
+        $credentials = request(['no_hp']);
+
+        $no_hp = $credentials['no_hp'];
+
+        $user = User::where('no_hp', $no_hp)->first();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'No HP tidak terdaftar'
+            ], 401);
+        }
+
+
+        $tokenResult = $user->createToken('Personal Access Token');
+        $token = $tokenResult->token;
+
+        if (!$tokenResult) {
+            return response()->json([
+                'message' => 'Gagal membuat token'
+            ], 500);
+        }
+    }
 }
