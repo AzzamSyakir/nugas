@@ -26,10 +26,10 @@ class HomeController extends Controller
                 $barang->save();
                 return response()->json($barang);
             } else {
-                //return bila tidak ada user sellere 
+                //return bila tidak ada user seller
                 return response()->json([
-                    'message' => 'Tidak ada tipe user penjual',
-                    'error' => 'User penjual tidak ditemukan'
+                    'message' => 'Tidak ada user penjual',
+                    'error' => 'User tipe penjual tidak ditemukan'
                 ], 404);
             }
         } catch (\Throwable $th) {
